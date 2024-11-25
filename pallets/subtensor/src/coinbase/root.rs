@@ -916,12 +916,12 @@ impl<T: Config> Pallet<T> {
         let coldkey = ensure_signed(origin)?;
 
         // --- 1. Rate limit for network registrations.
-        let current_block = Self::get_current_block_as_u64();
-        let last_lock_block = Self::get_network_last_lock_block();
-        ensure!(
-            current_block.saturating_sub(last_lock_block) >= NetworkRateLimit::<T>::get(),
-            Error::<T>::NetworkTxRateLimitExceeded
-        );
+        // let current_block = Self::get_current_block_as_u64();
+        // let last_lock_block = Self::get_network_last_lock_block();
+        // ensure!(
+        //     current_block.saturating_sub(last_lock_block) >= NetworkRateLimit::<T>::get(),
+        //     Error::<T>::NetworkTxRateLimitExceeded
+        // );
 
         // --- 2. Calculate and lock the required tokens.
         let lock_amount: u64 = Self::get_network_lock_cost();

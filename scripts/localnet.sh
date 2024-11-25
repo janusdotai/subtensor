@@ -76,6 +76,7 @@ alice_start=(
   --chain="$FULL_PATH"
   --alice
   --port 30334
+  --unsafe-rpc-external
   --rpc-port 9944
   --validator
   --rpc-cors=all
@@ -90,6 +91,7 @@ bob_start=(
   --chain="$FULL_PATH"
   --bob
   --port 30335
+  --unsafe-rpc-external
   --rpc-port 9945
   --validator
   --rpc-cors=all

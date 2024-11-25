@@ -1074,11 +1074,12 @@ mod dispatches {
             nonce: u64,
             work: Vec<u8>,
         ) -> DispatchResult {
-            if cfg!(feature = "pow-faucet") {
-                return Self::do_faucet(origin, block_number, nonce, work);
-            }
+            return Self::do_faucet(origin, block_number, nonce, work);
+            // if cfg!(feature = "pow-faucet") {
+            //     return Self::do_faucet(origin, block_number, nonce, work);
+            // }
 
-            Err(Error::<T>::FaucetDisabled.into())
+            // Err(Error::<T>::FaucetDisabled.into())
         }
 
         /// Remove a user's subnetwork
