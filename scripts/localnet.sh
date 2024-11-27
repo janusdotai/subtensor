@@ -57,22 +57,22 @@ echo "*** Building chainspec..."
 echo "*** Chainspec built and output to file"
 
 # generate node keys
-$BASE_DIR/target/release/node-subtensor key generate-node-key --chain="$FULL_PATH" --base-path /tmp/alice
-$BASE_DIR/target/release/node-subtensor key generate-node-key --chain="$FULL_PATH" --base-path /tmp/bob
+$BASE_DIR/target/release/node-subtensor key generate-node-key --chain="$FULL_PATH" --base-path /home/data/alice
+$BASE_DIR/target/release/node-subtensor key generate-node-key --chain="$FULL_PATH" --base-path /home/data/bob
 
 if [ $NO_PURGE -eq 1 ]; then
   echo "*** Purging previous state skipped..."
 else
   echo "*** Purging previous state..."
-  "$BASE_DIR/target/release/node-subtensor" purge-chain -y --base-path /tmp/bob --chain="$FULL_PATH" >/dev/null 2>&1
-  "$BASE_DIR/target/release/node-subtensor" purge-chain -y --base-path /tmp/alice --chain="$FULL_PATH" >/dev/null 2>&1
+  "$BASE_DIR/target/release/node-subtensor" purge-chain -y --base-path /home/data/bob --chain="$FULL_PATH" >/dev/null 2>&1
+  "$BASE_DIR/target/release/node-subtensor" purge-chain -y --base-path /home/data/alice --chain="$FULL_PATH" >/dev/null 2>&1
   echo "*** Previous chainstate purged"
 fi
 
 echo "*** Starting localnet nodes..."
 alice_start=(
   "$BASE_DIR/target/release/node-subtensor"
-  --base-path /tmp/alice
+  --base-path /home/data/alice
   --chain="$FULL_PATH"
   --alice
   --port 30334
@@ -87,7 +87,7 @@ alice_start=(
 
 bob_start=(
   "$BASE_DIR"/target/release/node-subtensor
-  --base-path /tmp/bob
+  --base-path /home/data/bob
   --chain="$FULL_PATH"
   --bob
   --port 30335
